@@ -15,13 +15,22 @@
                 animation="
                 property: rotation;
                 from: 0 0 0;
-                to: 180 0 0;
+                to: 360 0 360;
                 loop: true;
+                dur: 10000;
                 dir: alternate;
                 "
                 ></a-cone>
             
-           
+           <a-sphere position="0 1 -5" radius="2" color="red" 
+            animation="
+                    property: position;
+                    from: 0 20 -30;
+                    to: 0 -4 -30;
+                    dur: 10000;
+                    loop: true;
+                    "></a-sphere>
+
         </a-scene>
     </body>
 </html>
