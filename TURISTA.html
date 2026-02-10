@@ -26,13 +26,12 @@
       <!-- PLANO TURISTA COMPLETO -->
     <a-plane position="0 1 -4" rotation="-90 0 0" width="65" height="65" color="black"></a-plane>
     <a-sky color="#82c8e5"></a-sky>
-    <!-- TEXTO CIUDAD-->
-        <a-text value=" TOKIO 
-        $25,000"
-        position="-0.7 2 -4"
-        scale="2 3 3"
-        color="white">
-    </a-text>
+
+
+    <!-- CAMARA -->
+    <a-camera position="0 1.7 -26" rotation="-90 0 0">
+        <a-cursor raycaster="objects: .hoverable"></a-cursor>
+    </a-camera>
 
     <!-- ESQUINAS 10x10-->
 
@@ -51,108 +50,329 @@
 
     <!-- SUDAMERICA -->
      <!-- a cada edicio se le resta en z 5 -->
-    <a-plane position="-18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow"></a-plane>
+    <a-plane position="-18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+    <!-- PLANO INVISIBLE  -->
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <!-- TEXTO  -->
+        <a-text value="ARGENTINA $25,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
+
     <!--ASI SE USA UN MODELO 3D AMOR la posicion es a prueba y error-->
     <a-entity gltf-model="#edificio" position="-18 2 -26.5" scale="0.45 0.45 0.45"></a-entity>
 
-    <a-plane position="-13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow"></a-plane>
+    <a-plane position="-13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="CHILE $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
+
     <a-entity gltf-model="#edificioA" rotation="0 -180 0" position="-14.5 0.7 -26.5" scale="0.5 0.7 0.7"></a-entity>
     
-    <a-plane id = "telefono" position="-9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="pink"></a-plane>
+    <a-plane id = "telefono" position="-9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="pink">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
     
 
-    <a-plane position="-4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow"></a-plane>
+    <a-plane position="-4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="BRASIL $26,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioB" position="-4.2 3.5 -26.5" scale="0.38 1 0.5"></a-entity>
 
-    <a-plane id = "aerolinea" position="0 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="white"></a-plane>
+    <a-plane id = "aerolinea" position="0 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="white">
+         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="AEROLINA SUDAMERICA $2,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
 
-    <a-plane position="4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green"></a-plane>
+    <a-plane position="4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="PERU $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 -180 0" position="3.5 1.1 -26.5" scale="0.5 0.5 0.5"></a-entity>
 
-    <a-plane position="9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green"></a-plane>
+    <a-plane position="9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="VENEZUELA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 -180 0" position="8.1 1.1 -27.5" scale="0.5 0.5 0.5"></a-entity>
 
-    <a-plane position="13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="blue"></a-plane>
+    <a-plane position="13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="blue">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="CONSULADO $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioC" rotation="0 180 0" position="13.8 1 -26.5" scale="0.15 0.15 0.15"></a-entity>
     <!--LUZ PAL EDIFICIO-->
     <a-light type="ambient" intensity="0.5"></a-light>
-<a-light type="directional" position="103 3 -708" intensity="1"></a-light>
+    <a-light type="directional" position="103 3 -708" intensity="1"></a-light>
 
-    <a-plane position="18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green"></a-plane>
+    <a-plane position="18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="COLOMBIA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificio" position="18 2 -26.5" scale="0.4 0.5 0.5"></a-entity>
 
     <!-- AMERICA Y CENTRO AMERICA -->
      <!-- restarle 5 a x-->
-    <a-plane position="27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="blue"></a-plane>
+    <a-plane position="27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="blue">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="CANADA $30,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        </a-plane>
+    </a-plane>
      <a-entity gltf-model="#edificioA" position="23 1 14.5" scale="0.6 0.4 0.8"></a-entity>
 
-    <a-plane position="27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="blue"></a-plane>
+    <a-plane position="27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="blue">
+         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="ESTADOS UNIDOS $40,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#estatuilla" position="23 3 9.3" scale="200 260 260"></a-entity>
 
-    <a-plane position="27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="pink"></a-plane>
+    <a-plane position="27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="pink"> <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        </a-plane>
+</a-plane>
     <a-entity gltf-model="#mex" rotation="0 90 0"  position="27 1 6.5" scale="0.3 0.4 0.3"></a-entity>
 
-    <a-plane id="correo" position="27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="blue"></a-plane>
+    <a-plane id="correo" position="27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="blue">
+         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="MEXICO $26,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        </a-plane>
+    </a-plane>
     
-    <a-plane id="aerolinea" position="27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white"></a-plane>
+    <a-plane id="aerolinea" position="27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="AEROLINA NORTEAMERICANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        </a-plane>
+    </a-plane>
     
-    <a-plane position="27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="brown"></a-plane>
+    <a-plane position="27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="brown">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="GUATEMALA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificio" position="23 -3 -8.6" scale="0.4 0.5 0.4"></a-entity>
 
-    <a-plane position="27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="brown"></a-plane>
+    <a-plane position="27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="brown">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="COSTA RICA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioA" position="23 1 -12.6" scale="0.6 0.3 0.7"></a-entity>
 
-    <a-plane id= "telefono" position="27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="yellow"></a-plane>
+    <a-plane id= "telefono" position="27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="yellow">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
+        </a-plane>
+    </a-plane>
     
-    <a-plane position="27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="brown"></a-plane>
+    <a-plane position="27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="brown">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="PANAMA $8,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
+        </a-plane>
+    </a-plane>
      <a-entity gltf-model="#edificio" rotation="-180 0 0" position="22 2 -22.25" scale="0.5 1 0.4"></a-entity>
-    <!-- AFRICA ASIA  -->
-   <a-plane id="japon" position="18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red"></a-plane>
+    
+     <!-- AFRICA ASIA  -->
+   <a-plane id="japon" position="18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+    <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="JAPON $38,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+   </a-plane>
    <a-entity gltf-model="#Cyberpunk" rotation="0 -90 0" position="18 7 18" scale="0.6 1 0.6"></a-entity>
     
-   <a-plane id="telefono" position="13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="yellow"></a-plane>
+   <a-plane id="telefono" position="13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+     <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+   </a-plane>
     
-    <a-plane position="9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red"></a-plane>
+    <a-plane position="9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="CHINA $28,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#Chine" position="9 1 18" scale="0.3 0.5 0.4"></a-entity>
 
-    <a-plane position="4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red"></a-plane>
+    <a-plane position="4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="RUSIA $24,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioC" rotation="0 -90 0" position="4 0.9 18" scale="0.14 0.1 0.12"></a-entity>
     <a-light type="directional" position="-3000 1 1000" intensity=".5"></a-light>
 
-    <a-plane id="aerolinea" position="0 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="white"></a-plane>
-    <a-plane position="-4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange"></a-plane>
+    <a-plane id="aerolinea" position="0 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="white">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="AEROLINA AFROASIATICA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+    </a-plane>
+    <a-plane position="-4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="EMBAJADA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#madagascar" rotation="0 0 0" position="-2.4 1 19" scale="0.03 0.03 0.03"></a-entity>
 
-    <a-plane id="embajada" position="-9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="blue"></a-plane>
+    <a-plane id="embajada" position="-9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="blue"><a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="EMBAJADA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+    </a-plane>
     
-    <a-plane position="-13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange"></a-plane>
+    <a-plane position="-13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="EGIPTO $15,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#piramide" rotation="0 0 0" position="-13.5 1 15" scale="0.2 .3 0.3"></a-entity>
 
-    <a-plane position="-18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange"></a-plane>
+    <a-plane position="-18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="MARRUECOS $12,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioB" rotatdion="0 0 0" position="-18.6 1 18" scale="0.3 1 0.5"></a-entity>
 
+
     <!--  EUROPA  -->
-   <a-plane position="-27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="lime"></a-plane>
+   <a-plane position="-27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="lime">
+    <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="ALEMANIA $37,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+   </a-plane>
    <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-23 1 13.75" scale="0.3 1 0.5"></a-entity>
 
-    <a-plane position="-27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="lime"></a-plane>
+    <a-plane position="-27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="lime">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="SUIZA $36,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-23 1 8.5" scale="0.4 0.6 1"></a-entity>
 
-    <a-plane id="telefono" position="-27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="yellow"></a-plane>
+    <a-plane id="telefono" position="-27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="yellow">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
     
-    <a-plane position="-27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="lime"></a-plane>
+    <a-plane position="-27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="lime">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="ITALIA $35,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#piza" rotation="0 180 0" position="-22 5.8 -0.2" scale="2 2 2"></a-entity>
 
-    <a-plane id="aerolinea" position="-27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white"></a-plane>
-    <a-plane position="-27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="purple"></a-plane>
+    <a-plane id="aerolinea" position="-27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="AEROLINEA EUROPEA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
+    <a-plane position="-27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="purple">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="INGLATERRA $32,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#london" rotation="0 180 0" position="-22 0.7 -8.75" scale="2 2 2"></a-entity>
 
-    <a-plane id= "correo" position="-27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="pink"></a-plane>
-    <a-plane position="-27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="purple"></a-plane>
+    <a-plane id= "correo" position="-27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="pink">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
+
+    <a-plane position="-27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="purple">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="FRANCIA $36,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
    <!--AQUI ME EMPEZO A DAR LAG EN LA PAGINA, PROBABLEMENTE ES LA TORRE EIFFEL-->
     <a-entity gltf-model="#francia" rotation="0 180 0" position="-22 1 -17.7" scale="80 100 80"></a-entity>
 
-    <a-plane position="-27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="purple"></a-plane>
+    <a-plane position="-27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="purple">
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text value="ESPANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        </a-plane>
+    </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-22 0.75 -22.2" scale="0.7 0.4 0.6"></a-entity>
 
 </a-scene>
