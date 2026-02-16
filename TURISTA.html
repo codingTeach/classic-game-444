@@ -19,9 +19,14 @@
      <a-asset-item id="piza" src="assets/pisa.glb" ></a-asset-item>
      <a-asset-item id="francia" src="assets/eiffel.glb" ></a-asset-item> 
      <a-asset-item id="london" src="assets/londres.glb" ></a-asset-item>
-</a-assets>
 
-        <a-entity position="-18 1.1 23.5" rotation="0 -90 0"> 
+     <a-asset-item id="jugadores" src="assets/carro.glb" ></a-asset-item>
+</a-assets>
+    <!-- CARRITO -->
+    <a-entity id="carro" gltf-model="#jugadores" position="-25 2 23.5" scale="5 5 5" rotation="0 90 0>
+    </a-entity>
+
+    <a-entity position="-18 1.1 23.5" rotation="0 -90 0"> 
             <a-camera look-controls></a-camera></a-entity>
       <!-- PLANO TURISTA COMPLETO -->
     <a-plane position="0 1 -4" rotation="-90 0 0" width="65" height="65" color="black"></a-plane>
@@ -29,7 +34,7 @@
 
 
     <!-- CAMARA -->
-    <a-camera position="0 1.7 -26" rotation="-90 0 0">
+    <a-camera position="-30 1.5 23.5" rotation="0 90 0">
         <a-cursor raycaster="objects: .hoverable"></a-cursor>
     </a-camera>
 
@@ -59,7 +64,6 @@
         <a-text value="ARGENTINA $25,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
         </a-plane>
     </a-plane>
-
     <!--ASI SE USA UN MODELO 3D AMOR la posicion es a prueba y error-->
     <a-entity gltf-model="#edificio" position="-18 2 -26.5" scale="0.45 0.45 0.45"></a-entity>
 
