@@ -4,7 +4,144 @@
           <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
       
         </head>
-    <body><a-scene>
+        <script>
+//El avión avanza por l tablero,cambia turno automáticamente
+let turnoActual = 0;
+let posiciones = [0,0,0,0];
+
+let jugadores = ["avion1","avion2","avion3","avion4"];
+
+//RUTADEL TABLERO (orden de casillas)
+
+let ruta = [
+    {x:-27.5, y:1.2, z:23.5},  // INICIO
+    {x:-22.5, y:1.2, z:23.5},
+    {x:-18, y:1.2, z:23.5},
+    {x:-13.5, y:1.2, z:23.5},
+    {x:-9, y:1.2, z:23.5},
+    {x:-4.5, y:1.2, z:23.5},
+    {x:0, y:1.2, z:23.5},
+    {x:4.5, y:1.2, z:23.5},
+    {x:9, y:1.2, z:23.5},
+    {x:13.5, y:1.2, z:23.5},
+    {x:18, y:1.2, z:23.5},
+    {x:23, y:1.2, z:23.5},
+    {x:27.5, y:1.2, z:23.5},
+
+    // Baja lado derecho
+    {x:27.5, y:1.2, z:18},
+    {x:27.5, y:1.2, z:13},
+    {x:27.5, y:1.2, z:9},
+    {x:27.5, y:1.2, z:4},
+    {x:27.5, y:1.2, z:0},
+    {x:27.5, y:1.2, z:-4},
+    {x:27.5, y:1.2, z:-9},
+    {x:27.5, y:1.2, z:-13},
+    {x:27.5, y:1.2, z:-18},
+    {x:27.5, y:1.2, z:-22},
+    {x:27.5, y:1.2, z:-31.5},
+
+    // esquina inferior
+    {x:18, y:1.2, z:-31.5},
+    {x:13.5, y:1.2, z:-31.5},
+    {x:9, y:1.2, z:-31.5},
+    {x:4.5, y:1.2, z:-31.5},
+    {x:0, y:1.2, z:-31.5},
+    {x:-4.5, y:1.2, z:-31.5},
+    {x:-9, y:1.2, z:-31.5},
+    {x:-13.5, y:1.2, z:-31.5},
+    {x:-18, y:1.2, z:-31.5},
+    {x:-22.5, y:1.2, z:-31.5},
+    {x:-27.5, y:1.2, z:-31.5},
+
+    // sube lado izquierdo
+    {x:-27.5, y:1.2, z:-22},
+    {x:-27.5, y:1.2, z:-18},
+    {x:-27.5, y:1.2, z:-13},
+    {x:-27.5, y:1.2, z:-9},
+    {x:-27.5, y:1.2, z:-4},
+    {x:-27.5, y:1.2, z:0},
+    {x:-27.5, y:1.2, z:4},
+    {x:-27.5, y:1.2, z:9},
+    {x:-27.5, y:1.2, z:13},
+    {x:-27.5, y:1.2, z:18}
+];
+
+function tirarDado(){
+
+    let numero = Math.floor(Math.random()*6)+1;
+
+    document.getElementById("resultado").innerText =
+        "Jugador " + (turnoActual+1) + " sacó: " + numero;
+
+    moverJugador(numero);
+}
+
+function moverJugador(pasos){
+
+    posiciones[turnoActual] += pasos;
+
+    if(posiciones[turnoActual] >= ruta.length){
+        posiciones[turnoActual] = 0; // reinicia si da vuelta
+    }
+
+    let pos = ruta[posiciones[turnoActual]];
+
+    let jugador = document.getElementById(jugadores[turnoActual]);
+
+    jugador.setAttribute("animation", {
+        property: "position",
+        to: pos.x + " " + pos.y + " " + pos.z,
+        dur: 800
+    });
+
+    moverCamara(pos);
+
+    setTimeout(cambiarTurno,900);
+}
+
+function moverCamara(pos){
+
+    let cam = document.getElementById("cameraRig");
+    let jugador = document.getElementById(jugadores[turnoActual]);
+
+    // detener giro 360
+    cam.removeAttribute("animation");
+
+    // obtener posición REAL del avión en el mundo
+    let worldPos = new THREE.Vector3();
+    jugador.object3D.getWorldPosition(worldPos);
+
+    // mover cámara exactamente al avión
+    cam.setAttribute("animation__pos",{
+        property:"position",
+        to: worldPos.x + " " + (worldPos.y + 0.8) + " " + worldPos.z,
+        dur:900,
+        easing:"easeInOutQuad"
+    });
+}
+
+
+function cambiarTurno(){
+
+    turnoActual++;
+
+    if(turnoActual > 3){
+        turnoActual = 0;
+    }
+
+    document.getElementById("resultado").innerText =
+        "Turno Jugador " + (turnoActual+1);
+
+    let nuevaPos = ruta[posiciones[turnoActual]];
+    moverCamara(nuevaPos);
+}
+
+
+</script>
+
+    <body>
+        <a-scene>
 <!-- carga de los MODELOS 3D para mejor rendimiento -->
         <a-assets>
   <a-asset-item id="edificio" src="assets/edificio_1.glb" ></a-asset-item>
@@ -21,12 +158,19 @@
      <a-asset-item id="francia" src="assets/eiffel.glb" ></a-asset-item> 
      <a-asset-item id="london" src="assets/londres.glb" ></a-asset-item>
 
-     <a-asset-item id="jugadores" src="assets/carro.glb" ></a-asset-item>
+     <a-asset-item id="jugador1" src="assets/avion1.glb" ></a-asset-item>
+     <a-asset-item id="jugador2" src="assets/avion2.glb" ></a-asset-item>
+     <a-asset-item id="jugador3" src="assets/avion3.glb" ></a-asset-item>
+     <a-asset-item id="jugador4" src="assets/avion4.glb" ></a-asset-item>
 </a-assets>
-    <!-- CARRITO -->
-    <a-entity id="carro" gltf-model="#jugadores" position="-25 2 23.5" scale="5 5 5" rotation="0 90 0">
-    </a-entity>
-
+    <!-- AVION1 verde -->
+    <a-entity id="avion1" gltf-model="#jugador1" position="-25 1.2 23.5" scale="0.05 0.05 0.05" rotation="0 90 0"></a-entity>
+    <!-- AVION2 rosa-->
+    <a-entity id="avion2" gltf-model="#jugador2" position="-27 1 20.5" scale="0.1 0.1 0.1" rotation="0 90 0"></a-entity>
+    <!-- AVION3 blanco y cafe-->
+    <a-entity id="avion3" gltf-model="#jugador3" position="-27 1.5 26.5" scale="0.2 0.2 0.2" rotation="0 90 0"></a-entity>
+    <!-- AVION4 cafe -->
+    <a-entity id="avion4" gltf-model="#jugador4" position="-28 1 23.5" scale="4 4 4" rotation="0 90 0"></a-entity>
     
       <!-- PLANO TURISTA COMPLETO -->
     <a-plane position="0 1 -4" rotation="-90 0 0" width="65" height="65" color="black"></a-plane>
@@ -417,6 +561,16 @@
     <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-22 0.75 -22.2" scale="0.7 0.4 0.6"></a-entity>
 
 </a-scene>
+<!--BOTON PARA TIRAR DADO-->
+<button onclick="tirarDado()" 
+style="position:absolute; top:20px; left:20px; z-index:999;">
+🎲 Tirar Dado
+</button>
+
+<p id="resultado" 
+style="position:absolute; top:60px; left:20px; color:white; font-size:20px;">
+Turno Jugador 1
+</p>
 
     
     </body>
