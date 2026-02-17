@@ -2,7 +2,8 @@
 <html>
     <head>
           <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    </head>
+      
+        </head>
     <body><a-scene>
 <!-- carga de los MODELOS 3D para mejor rendimiento -->
         <a-assets>
@@ -23,26 +24,62 @@
      <a-asset-item id="jugadores" src="assets/carro.glb" ></a-asset-item>
 </a-assets>
     <!-- CARRITO -->
-    <a-entity id="carro" gltf-model="#jugadores" position="-25 2 23.5" scale="5 5 5" rotation="0 90 0>
+    <a-entity id="carro" gltf-model="#jugadores" position="-25 2 23.5" scale="5 5 5" rotation="0 90 0">
     </a-entity>
 
-    <a-entity position="-18 1.1 23.5" rotation="0 -90 0"> 
-            <a-camera look-controls></a-camera></a-entity>
+    
       <!-- PLANO TURISTA COMPLETO -->
     <a-plane position="0 1 -4" rotation="-90 0 0" width="65" height="65" color="black"></a-plane>
+    <a-box position="0 -1.8 -4" depth="65" height="5" width="65" color="black"></a-box>
     <a-sky color="#82c8e5"></a-sky>
 
 
     <!-- CAMARA -->
-    <a-camera position="-30 1.5 23.5" rotation="0 90 0">
-        <a-cursor raycaster="objects: .hoverable"></a-cursor>
-    </a-camera>
+   <!-- RIG DE CAMARA -->
+<a-entity 
+    id="cameraRig"
+    position="0 1.5 0"
+    
+    animation="property: rotation; 
+               to: 0 360 0; 
+               dur: 8000; 
+               easing: linear; 
+               autoplay: true"> 
+
+    <a-camera  look-controls="enabled: false" rotation="0 -90 0" position="-30 1.5 23.5" >
+    <a-cursor  raycaster="objects: .hoverable"></a-cursor>
+</a-camera>
+
+</a-entity>
+
 
     <!-- ESQUINAS 10x10-->
 
     <!-- CARCEL -->
     <a-plane position="-27.5 1.1 -31.5" rotation="-90 0 0" width="10" height="10" color="gray"></a-plane>
-
+ <a-plane position="-27.5 6 -31.5" rotation="90 0 0" width="10" height="10" color="gray"></a-plane>
+       <a-plane position="-32.5 1.1 -31.5" rotation="0 90 0" width="10" height="10" color="gray"></a-plane>
+      <a-plane position="-27.5 1.1 -36.5" rotation="0 0 90" width="10" height="10" color="gray"></a-plane>
+      <a-cylinder position="-32 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+     <a-cylinder position="-31.5 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-31 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-30.5 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-30 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-22.5 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-23 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-23.5 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-24 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-24.5 1 -26.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-22.5 1 -27" radius="0.1" height="10" color="gray"></a-cylinder>
+          <a-cylinder position="-22.5 1 -27.5" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-22.5 1 -28" radius="0.1" height="10" color="gray"></a-cylinder>
+    <a-cylinder position="-22.5 1 -28.5" radius="0.1" height="10" color="gray"></a-cylinder>
+                <a-cylinder position="-22.5 1 -36.5" radius="0.1" height="10" color="gray"></a-cylinder>
+        <a-cylinder position="-22.5 1 -36" radius="0.1" height="10" color="gray"></a-cylinder>
+        <a-cylinder position="-22.5 1 -35.5" radius="0.1" height="10" color="gray"></a-cylinder>
+                <a-cylinder position="-22.5 1 -35" radius="0.1" height="10" color="gray"></a-cylinder>
+        <a-cylinder position="-22.5 1 -34.5" radius="0.1" height="10" color="gray"></a-cylinder>
+        <a-cube position="-22.5 1 -34.5"></a-cube>
     <!-- AUSTRALIA -->
     <a-plane position="27.5 1.1 -31.5" rotation="-90 0 0" width="10" height="10" color="green"></a-plane>
 
@@ -51,7 +88,7 @@
 
     <!-- INICIO -->
     <a-plane position="-27.5 1.1 23.5" rotation="-90 0 0" width="10" height="10" color="red"></a-plane>
-
+    
 
     <!-- SUDAMERICA -->
      <!-- a cada edicio se le resta en z 5 -->
