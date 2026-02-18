@@ -236,7 +236,12 @@ function moverCamara(pos){
      <a-asset-item id="jugador2" src="assets/avion2.glb" ></a-asset-item>
      <a-asset-item id="jugador3" src="assets/avion3.glb" ></a-asset-item>
      <a-asset-item id="jugador4" src="assets/avion4.glb" ></a-asset-item>
+
+     <a-asset-item id="arbol" src="assets/arbol.glb" ></a-asset-item>
+     <a-asset-item id="cocodrilo" src="assets/bombardinococodrilo.glb" ></a-asset-item>
+
 </a-assets>
+
     <!-- AVION1 verde -->
     <a-entity id="avion1" gltf-model="#jugador1" position="-25 1.2 23.5" scale="0.05 0.05 0.05" rotation="0 90 0"><a-entity id="cam-avion1" camera="active: false" position="0 30 -50" rotation="-20 180 0"></a-entity>
         </a-entity>
@@ -291,6 +296,11 @@ function moverCamara(pos){
         <a-cube position="-22.5 1 -34.5"></a-cube>
     <!-- AUSTRALIA -->
     <a-plane position="27.5 1.1 -31.5" rotation="-90 0 0" width="10" height="10" color="green"></a-plane>
+    <a-entity gltf-model="#arbol" position="24.5 1.1 -34.5" scale="0.8 0.8 0.8"></a-entity>
+    <a-entity gltf-model="#arbol" position="30.5 1.1 -34.5" scale="0.8 0.8 0.8"></a-entity>
+    <a-entity gltf-model="#arbol" position="24.5 1.1 -28.5" scale="0.8 0.8 0.8"></a-entity>
+    <a-entity gltf-model="#arbol" position="30.5 1.1 -28.5" scale="0.8 0.8 0.8"></a-entity>
+    <a-entity gltf-model="#cocodrilo" position="27.5 1.1 -31.5" scale="1 1 1"></a-entity>
 
     <!-- DEPORTADO -->
     <a-plane position="27.5 1.1 23.5" rotation="-90 0 0" width="10" height="10" color="purple"></a-plane>
@@ -301,327 +311,799 @@ function moverCamara(pos){
 
     <!-- SUDAMERICA -->
      <!-- a cada edicio se le resta en z 5 -->
-    <a-plane position="-18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
-    <!-- PLANO INVISIBLE  -->
+    <a-plane  class="contenedor-pais" position="-18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+    <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
+        <!-- PLANO INVISIBLE  -->
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
         <!-- TEXTO  -->
-        <a-text value="ARGENTINA $25,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="ARGENTINA $25,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Arrogancia europea en una economía de canje de espejitos."" 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
+    </a-plane>
     </a-plane>
     <!--ASI SE USA UN MODELO 3D AMOR la posicion es a prueba y error-->
     <a-entity gltf-model="#edificio" position="-18 2 -26.5" scale="0.45 0.45 0.45"></a-entity>
-
-    <a-plane position="-13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
-         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+<!-- ==============CHILE====================== -->
+    <a-plane  class="contenedor-pais" position="-13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="CHILE $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="CHILE $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un pasillo de tierra que reza para que el próximo terremoto no los borre del mapa antes de terminar de pagar la universidad." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
+    </a-plane>
     </a-plane>
 
     <a-entity gltf-model="#edificioA" rotation="0 -180 0" position="-14.5 0.7 -26.5" scale="0.5 0.7 0.7"></a-entity>
-    
-    <a-plane id = "telefono" position="-9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="pink">
+    <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="pink">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen más iniciativa que tu gobierno." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
     </a-plane>
-    
-
-    <a-plane position="-4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+    </a-plane>
+    <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="BRASIL $26,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="BRASIL $26,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Ven por el Carnaval, quédate porque te dispararon en una favela." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioB" position="-4.2 3.5 -26.5" scale="0.38 1 0.5"></a-entity>
-
-    <a-plane id = "aerolinea" position="0 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="white">
-         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
-                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
-                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="AEROLINA SUDAMERICA $2,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
-    </a-plane>
-
-    <a-plane position="4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+  <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="0 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="white">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere> 
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="PERU $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="AEROLINA SUDAMERICA $2,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="AEROLINEA DEL CHAPO." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
+    </a-plane>
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais"position="4.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere> 
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text class="titulo-pais" visible "true"value="PERU $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Comida increíble servida por presidentes que terminan en la cárcel." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 -180 0" position="3.5 1.1 -26.5" scale="0.5 0.5 0.5"></a-entity>
-
-    <a-plane position="9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="9 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="VENEZUELA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="VENEZUELA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un parque temático de supervivencia donde el dinero vale menos que el papel de baño." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 -180 0" position="8.1 1.1 -27.5" scale="0.5 0.5 0.5"></a-entity>
-
-    <a-plane position="13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="blue">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="13.5 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="blue">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="CONSULADO $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="CONSULADO $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="El lugar donde vas a humillarte ante un burócrata para que te den permiso de ser un ciudadano de segunda en un país que te odia." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioC" rotation="0 180 0" position="13.8 1 -26.5" scale="0.15 0.15 0.15"></a-entity>
     <!--LUZ PAL EDIFICIO-->
     <a-light type="ambient" intensity="0.5"></a-light>
     <a-light type="directional" position="103 3 -708" intensity="1"></a-light>
-
-    <a-plane position="18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
-         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="18 1.1 -31.5" rotation="-90 0 0" width="4" height="5" color="green">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="0 -1.8 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere> 
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="COLOMBIA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="COLOMBIA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Exportadores de nieve blanca y sicarios con acento amable." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificio" position="18 2 -26.5" scale="0.4 0.5 0.5"></a-entity>
 
     <!-- AMERICA Y CENTRO AMERICA -->
      <!-- restarle 5 a x-->
-    <a-plane position="27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="blue">
+    <a-plane class="contenedor-pais" position="27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="blue">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="CANADA $30,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="CANADA $30,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Gringos educados que te ofrecen la eutanasia si tienes gripe." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
      <a-entity gltf-model="#edificioA" position="23 1 14.5" scale="0.6 0.4 0.8"></a-entity>
-
-    <a-plane position="27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="blue">
-         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="blue">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+    </a-sphere> 
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="ESTADOS UNIDOS $40,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="ESTADOS UNIDOS $40,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+       <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Escuela de tiro por la mañana, bancarrota médica por la tarde." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity> 
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#estatuilla" position="23 3 9.3" scale="200 260 260"></a-entity>
-
-    <a-plane position="27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="pink"> <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="pink"> 
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen más iniciativa que tu gobierno." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
 </a-plane>
     <a-entity gltf-model="#mex" rotation="0 90 0"  position="27 1 6.5" scale="0.3 0.4 0.3"></a-entity>
-
-    <a-plane id="correo" position="27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="blue">
-         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
-                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
-                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="MEXICO $26,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
-        </a-plane>
-    </a-plane>
-    
-    <a-plane id="aerolinea" position="27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white">
+  <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="blue">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere> 
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="AEROLINA NORTEAMERICANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="MEXICO $26,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Donde el narco pone el orden y el gobierno las bolsas de basura." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
     </a-plane>
-    
-    <a-plane position="27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="brown">
+    </a-plane>
+      <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
+  <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text class="titulo-pais" visible "true" value="AEROLINA NORTEAMERICANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un ataúd con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
+    </a-plane>
+     <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="brown">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="GUATEMALA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="GUATEMALA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
+        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="El ensayo de México que salió con menos presupuesto." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificio" position="23 -3 -8.6" scale="0.4 0.5 0.4"></a-entity>
-
-    <a-plane position="27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="brown">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="brown">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="COSTA RICA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="COSTA RICA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
+        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un zoológico de gringos retirados que pagan una fortuna para ver monos mientras el resto del país se inunda." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioA" position="23 1 -12.6" scale="0.6 0.3 0.7"></a-entity>
-
-    <a-plane id= "telefono" position="27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="yellow">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="yellow">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
+        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Una notificación de que tu vida es un error estadístico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
     </a-plane>
-    
-    <a-plane position="27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="brown">
+    </a-plane>
+    <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="brown">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="-1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="PANAMA $8,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="PANAMA $8,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
+    <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un banco gigante con barcos pasando por el jardín." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
+    </a-plane>
     </a-plane>
      <a-entity gltf-model="#edificio" rotation="-180 0 0" position="22 2 -22.25" scale="0.5 1 0.4"></a-entity>
     
+
      <!-- AFRICA ASIA  -->
-   <a-plane id="japon" position="18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+   <a-plane class="contenedor-pais" position="18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+    <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
     <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="JAPON $38,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="JAPON $38,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Trabajar hasta morir o ver porno de tentáculos para no llorar." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
    </a-plane>
    <a-entity gltf-model="#Cyberpunk" rotation="0 -90 0" position="18 7 18" scale="0.6 1 0.6"></a-entity>
-    
-   <a-plane id="telefono" position="13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="yellow">
-     <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+     <!-- ==================================== -->
+   <a-plane class="contenedor-pais" position="13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="yellow">
+    <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere> 
+    <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Una notificación de que tu vida es un error estadístico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
    </a-plane>
-    
-    <a-plane position="9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="CHINA $28,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="CHINA $28,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un campo de trabajo forzado con reconocimiento facial y 5G." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#Chine" position="9 1 18" scale="0.3 0.5 0.4"></a-entity>
-
-    <a-plane position="4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+ <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="red">
+         <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="RUSIA $24,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="RUSIA $24,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Vodka, ventanas que "suicidan" gente y dictadura eterna." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioC" rotation="0 -90 0" position="4 0.9 18" scale="0.14 0.1 0.12"></a-entity>
     <a-light type="directional" position="-3000 1 1000" intensity=".5"></a-light>
-
-    <a-plane id="aerolinea" position="0 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="white">
+ <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="0 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="white">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="AEROLINA AFROASIATICA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="AEROLINA AFROASIATICA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un ataúd con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
     </a-plane>
-    <a-plane position="-4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+    </a-plane>
+     <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-4.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="EMBAJADA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="SUDAFRICA $23,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Apartheid moderno con vallas electrificadas y safaris de hambre." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#madagascar" rotation="0 0 0" position="-2.4 1 19" scale="0.03 0.03 0.03"></a-entity>
-
-    <a-plane id="embajada" position="-9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="blue"><a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
-                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
-                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="EMBAJADA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
-    </a-plane>
-    
-    <a-plane position="-13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+ <!-- ==================================== -->
+    <a-plane class="contenedor-pais"position="-9 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="blue">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="EGIPTO $15,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="EMBAJADA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Una sala de espera VIP donde te rechazan la visa mientras te recuerdan que tu pasaporte solo sirve para prender el carbón." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
+    </a-plane>
+     <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
+        <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
+                 animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
+                 animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
+        <a-text class="titulo-pais" visible "true" value="EGIPTO $15,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Estafadores de turistas disfrazados de faraones entre basura milenaria." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#piramide" rotation="0 0 0" position="-13.5 1 15" scale="0.2 .3 0.3"></a-entity>
-
-    <a-plane position="-18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-18 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 1.5 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="MARRUECOS $12,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="MARRUECOS $12,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 -360 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Laberintos donde te cobran hasta por decirte qué hora es." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioB" rotatdion="0 0 0" position="-18.6 1 18" scale="0.3 1 0.5"></a-entity>
 
 
     <!--  EUROPA  -->
-   <a-plane position="-27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="lime">
+   <a-plane class="contenedor-pais" position="-27.5 1.1 13.75" rotation="-90 0 0" width="5" height="4" color="lime">
+    <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
     <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="ALEMANIA $37,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="ALEMANIA $37,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Robotismo nazi reciclado en burocracia y salchichas tristes." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
    </a-plane>
    <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-23 1 13.75" scale="0.3 1 0.5"></a-entity>
-
-    <a-plane position="-27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="lime">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 9.25" rotation="-90 0 0" width="5" height="4" color="lime">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="SUIZA $36,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="SUIZA $36,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Lavandería de oro ensangrentado con olor a chocolate y neutralidad cobarde." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-23 1 8.5" scale="0.4 0.6 1"></a-entity>
-
-    <a-plane id="telefono" position="-27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="yellow">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 4.75" rotation="-90 0 0" width="5" height="4" color="yellow">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Una notificación de que tu vida es un error estadístico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
     </a-plane>
-    
-    <a-plane position="-27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="lime">
+    </a-plane>
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 0.25" rotation="-90 0 0" width="5" height="4" color="lime">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="ITALIA $35,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="ITALIA $35,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Mafia, carbohidratos y un país que se cae a pedazos con estilo." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#piza" rotation="0 180 0" position="-22 5.8 -0.2" scale="2 2 2"></a-entity>
-
-    <a-plane id="aerolinea" position="-27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white">
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 -4.25" rotation="-90 0 0" width="5" height="4" color="white">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="AEROLINEA EUROPEA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="AEROLINEA EUROPEA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+    <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un ataúd con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>    
     </a-plane>
-    <a-plane position="-27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="purple">
+    </a-plane>
+<!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 -8.75" rotation="-90 0 0" width="5" height="4" color="purple">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="INGLATERRA $32,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="INGLATERRA $32,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Dientes chuecos y depresión climática en una isla aislada." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#london" rotation="0 180 0" position="-22 0.7 -8.75" scale="2 2 2"></a-entity>
-
-    <a-plane id= "correo" position="-27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="pink">
+  <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 -13.25" rotation="-90 0 0" width="5" height="4" color="pink">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen más iniciativa que tu gobierno." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity> 
     </a-plane>
-
-    <a-plane position="-27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="purple">
+    </a-plane>
+ <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 -17.75" rotation="-90 0 0" width="5" height="4" color="purple">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="FRANCIA $36,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="FRANCIA $36,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Gente que no se baña y se rinde antes de que empiece la guerra." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
    <!--AQUI ME EMPEZO A DAR LAG EN LA PAGINA, PROBABLEMENTE ES LA TORRE EIFFEL-->
     <a-entity gltf-model="#francia" rotation="0 180 0" position="-22 1 -17.7" scale="80 100 80"></a-entity>
-
-    <a-plane position="-27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="purple">
+ <!-- ==================================== -->
+    <a-plane class="contenedor-pais" position="-27.5 1.1 -22.25" rotation="-90 0 0" width="5" height="4" color="purple">
+        <a-sphere class="hoverable" 
+            interaccion-pais 
+            position="1.5 -1 0.5" 
+            radius="0.3" 
+            color="orange">
+    <a-text class="titulo-pais" visible "true" value=" " align="center" position="0 0.5 0" scale="0.5 0.5 0.5" color="white" rotation="90 0 0"></a-text>
+  </a-sphere>
         <a-plane class="hoverable" position="0 0.8 0.3" rotation="90 0 0" width="3.5" height="1.5" material="opacity: 0; transparent: true"
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
-        <a-text value="ESPANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
-        </a-plane>
+        <a-text class="titulo-pais" visible "true" value="ESPANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
+        <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
+      <a-plane width="4" height="1.5" color="black" opacity="0.8">
+        <a-text value="Un bar de desempleados que aún creen que tienen colonias." 
+                align="center" width="4" color="white" position="0 0 0.01"></a-text>
+      </a-plane>
+    </a-entity>
+    </a-plane>
     </a-plane>
     <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-22 0.75 -22.2" scale="0.7 0.4 0.6"></a-entity>
 
