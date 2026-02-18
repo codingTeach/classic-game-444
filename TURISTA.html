@@ -126,13 +126,36 @@ let turnoActual = 0;
                 });
                 await delay(200);
             }
+            cam.setAttribute("animation__lado", {
+    property: "rotation",
+    from: "-20 160 0",
+    to: "-20 200 0",
+    dur: 2000,
+    dir: "alternate",
+    loop: true,
+    easing: "easeInOutSine"
+});
+
         }
 
         function evaluarCasilla() {
             let casillaIdx = posiciones[turnoActual];
             let casilla = ruta[casillaIdx];
             let dueño = propiedades[casillaIdx];
-
+            // Buscamos el contenedor que tenga la misma posición que la casilla actual
+    let todosLosContenedores = document.querySelectorAll('.contenedor-pais');
+    todosLosContenedores.forEach(cont => {
+        let posCont = cont.getAttribute('position');
+        // Si el contenedor está en la misma X y Z que la ruta
+        if (Math.abs(posCont.x - casilla.x) < 0.5 && Math.abs(posCont.z - casilla.z) < 0.5) {
+            let panel = cont.querySelector('.panel-info');
+            if (panel) {
+                panel.setAttribute('visible', 'true');
+                // Se oculta solo tras 5 segundos
+                setTimeout(() => { panel.setAttribute('visible', 'false'); }, 5000);
+            }
+        }
+    });
             if (casilla.precio === 0) {
                 finalizarTurno();
             } else if (dueño === undefined) {
@@ -205,6 +228,27 @@ function moverCamara(pos){
     });
 }
 
+window.addEventListener("load", () => {
+
+    document.querySelectorAll(".contenedor-pais").forEach(contenedor => {
+
+        const esfera = contenedor.querySelector("a-sphere");
+        const panel = contenedor.querySelector(".panel-info");
+
+        if (esfera && panel) {
+
+            esfera.addEventListener("click", () => {
+
+                let visible = panel.getAttribute("visible");
+                panel.setAttribute("visible", !visible);
+
+            });
+
+        }
+
+    });
+
+});
 
 </script>
 
@@ -246,11 +290,11 @@ function moverCamara(pos){
     <a-entity id="avion1" gltf-model="#jugador1" position="-25 1.2 23.5" scale="0.05 0.05 0.05" rotation="0 90 0"><a-entity id="cam-avion1" camera="active: false" position="0 30 -50" rotation="-20 180 0"></a-entity>
         </a-entity>
     <!-- AVION2 rosa-->
-    <a-entity id="avion2" gltf-model="#jugador2" position="-27 1 20.5" scale="0.1 0.1 0.1" rotation="0 90 0"><a-entity id="cam-avion2" camera="active: false" position="0 30 -50" rotation="-20 180 0"></a-entity></a-entity>
+    <a-entity id="avion2" gltf-model="#jugador2" position="-27 1 20.5" scale="0.1 0.1 0.1" rotation="0 90 0"><a-entity id="cam-avion2" camera="active: false" position="0 15 -25" rotation="-20 180 0"></a-entity></a-entity>
     <!-- AVION3 blanco y cafe-->
-    <a-entity id="avion3" gltf-model="#jugador3" position="-27 1.5 26.5" scale="0.2 0.2 0.2" rotation="0 90 0"><a-entity id="cam-avion3" camera="active: false" position="0 30 -50" rotation="-20 180 0"></a-entity></a-entity>
+    <a-entity id="avion3" gltf-model="#jugador3" position="-27 1.5 26.5" scale="0.2 0.2 0.2" rotation="0 90 0"><a-entity id="cam-avion3" camera="active: false" position="0 6 -10" rotation="-20 180 0"></a-entity></a-entity>
     <!-- AVION4 cafe -->
-    <a-entity id="avion4" gltf-model="#jugador4" position="-28 1 23.5" scale="4 4 4" rotation="0 90 0"><a-entity id="cam-avion4" camera="active: false" position="0 3 -5" rotation="-20 180 0"></a-entity></a-entity>
+    <a-entity id="avion4" gltf-model="#jugador4" position="-28 1 23.5" scale="4 4 4" rotation="0 90 0"><a-entity id="cam-avion4" camera="active: false" position="0 0.3 -0.5" rotation="-20 180 0"></a-entity></a-entity>
     
       <!-- PLANO TURISTA COMPLETO -->
     <a-plane position="0 1 -4" rotation="-90 0 0" width="65" height="65" color="black"></a-plane>
@@ -262,7 +306,7 @@ function moverCamara(pos){
    <!-- RIG DE CAMARA -->
 <a-entity id="cameraRig" position="0 1.5 0" animation="property: rotation; to: 0 360 0; dur: 8000; easing: linear; autoplay: true"> 
             <a-camera id="mainCamera" look-controls="enabled: false" position="-30 1.5 23.5" rotation="0 -90 0">
-                <a-cursor raycaster="objects: .hoverable"></a-cursor>
+                <a-cursor raycaster="objects: .hoverable" fuse="false"></a-cursor>></a-cursor>
             </a-camera>
         </a-entity>
 
@@ -324,10 +368,10 @@ function moverCamara(pos){
                  animation__hover="property: position; from: 0 0.8 0.3; to: 0 0.8 1.5; startEvents: mouseenter; dur: 500"
                  animation__leave="property: position; from: 0 0.8 1.5; to: 0 0.8 0.3; startEvents: mouseleave; dur: 500">
         <!-- TEXTO  -->
-        <a-text class="titulo-pais" visible "true" value="ARGENTINA $25,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
+        <a-text class="titulo-pais" visible="true" value="ARGENTINA $25,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
     <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Arrogancia europea en una economía de canje de espejitos."" 
+        <a-text value="Arrogancia europea en una economia de canje de espejitos."
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>    
@@ -350,7 +394,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="CHILE $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
     <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un pasillo de tierra que reza para que el próximo terremoto no los borre del mapa antes de terminar de pagar la universidad." 
+        <a-text value="Un pasillo de tierra que reza para que el proximo terremoto no los borre del mapa antes de terminar de pagar la universidad." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>    
@@ -373,7 +417,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen más iniciativa que tu gobierno." 
+        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen mas iniciativa que tu gobierno." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -394,7 +438,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="BRASIL $26,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Ven por el Carnaval, quédate porque te dispararon en una favela." 
+        <a-text value="Ven por el Carnaval, quedate porque te dispararon en una favela." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -437,7 +481,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true"value="PERU $18,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Comida increíble servida por presidentes que terminan en la cárcel." 
+        <a-text value="Comida increible servida por presidentes que terminan en la carcel." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -459,7 +503,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="VENEZUELA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
     <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un parque temático de supervivencia donde el dinero vale menos que el papel de baño." 
+        <a-text value="Un parque tematico de supervivencia donde el dinero vale menos que el papel de baño." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>    
@@ -481,7 +525,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="CONSULADO $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 3" rotation="0 180 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="El lugar donde vas a humillarte ante un burócrata para que te den permiso de ser un ciudadano de segunda en un país que te odia." 
+        <a-text value="El lugar donde vas a humillarte ante un burocrata para que te den permiso de ser un ciudadano de segunda en un pais que te odia." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -552,7 +596,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="ESTADOS UNIDOS $40,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
        <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Escuela de tiro por la mañana, bancarrota médica por la tarde." 
+        <a-text value="Escuela de tiro por la mañana, bancarrota medica por la tarde." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity> 
@@ -574,7 +618,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
         <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen más iniciativa que tu gobierno." 
+        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen mas iniciativa que tu gobierno." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -617,7 +661,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="AEROLINA NORTEAMERICANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
         <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un ataúd con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
+        <a-text value="Un ataud con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -638,7 +682,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="GUATEMALA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" ></a-text>
         <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="El ensayo de México que salió con menos presupuesto." 
+        <a-text value="El ensayo de Mexico que salio con menos presupuesto." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -660,7 +704,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="COSTA RICA $10,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
         <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un zoológico de gringos retirados que pagan una fortuna para ver monos mientras el resto del país se inunda." 
+        <a-text value="Un zoologico de gringos retirados que pagan una fortuna para ver monos mientras el resto del pais se inunda." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -682,7 +726,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
         <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Una notificación de que tu vida es un error estadístico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
+        <a-text value="Una notificacion de que tu vida es un error estadistico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -703,7 +747,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="PANAMA $8,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double"></a-text>
     <a-entity class="panel-info" visible="false" position="-2 1 1" rotation="0 90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un banco gigante con barcos pasando por el jardín." 
+        <a-text value="Un banco gigante con barcos pasando por el jardin." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>    
@@ -727,7 +771,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="JAPON $38,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Trabajar hasta morir o ver porno de tentáculos para no llorar." 
+        <a-text value="Trabajar hasta morir o ver porno de tentaculos para no llorar." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -749,7 +793,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Una notificación de que tu vida es un error estadístico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
+        <a-text value="Una notificacion de que tu vida es un error estadistico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -792,7 +836,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="RUSIA $24,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Vodka, ventanas que "suicidan" gente y dictadura eterna." 
+        <a-text value="Vodka, ventanas que suicidan gente y dictadura eterna." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -815,7 +859,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="AEROLINA AFROASIATICA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
     <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un ataúd con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
+        <a-text value="Un ataud con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>    
@@ -858,14 +902,14 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="EMBAJADA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
         <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 360 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Una sala de espera VIP donde te rechazan la visa mientras te recuerdan que tu pasaporte solo sirve para prender el carbón." 
+        <a-text value="Una sala de espera VIP donde te rechazan la visa mientras te recuerdan que tu pasaporte solo sirve para prender el carbon." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
     </a-plane>
     </a-plane>
      <!-- ==================================== -->
-    <a-plane class="contenedor-pais" position="-13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
+    <a-plane class="contenedor-pais hoverable" position="-13.5 1.1 23.5" rotation="-90 0 0" width="4" height="5" color="orange">
         <a-sphere class="hoverable" 
             interaccion-pais 
             position="1.5 1.5 0.5" 
@@ -901,7 +945,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="MARRUECOS $12,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 -90 0"></a-text>
     <a-entity class="panel-info" visible="false" position="0 1 -1" rotation="0 -360 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Laberintos donde te cobran hasta por decirte qué hora es." 
+        <a-text value="Laberintos donde te cobran hasta por decirte que hora es." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>    
@@ -947,7 +991,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="SUIZA $36,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
         <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Lavandería de oro ensangrentado con olor a chocolate y neutralidad cobarde." 
+        <a-text value="Lavanderia de oro ensangrentado con olor a chocolate y neutralidad cobarde." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -969,7 +1013,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="MENSAJE" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
         <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Una notificación de que tu vida es un error estadístico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
+        <a-text value="Una notificacion de que tu vida es un error estadistico, generalmente entregada por un sistema que solo funciona para recordarte tus deudas." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -990,7 +1034,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="ITALIA $35,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
         <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Mafia, carbohidratos y un país que se cae a pedazos con estilo." 
+        <a-text value="Mafia, carbohidratos y un pais que se cae a pedazos con estilo." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -1012,7 +1056,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="AEROLINEA EUROPEA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
     <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un ataúd con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
+        <a-text value="Un ataud con alas donde pagas una fortuna para que te traten como ganado y recen para que el mantenimiento no sea opcional." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>    
@@ -1033,7 +1077,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="INGLATERRA $32,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
         <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Dientes chuecos y depresión climática en una isla aislada." 
+        <a-text value="Dientes chuecos y depresion climatica en una isla aislada." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
@@ -1055,7 +1099,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="CORREO" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
         <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen más iniciativa que tu gobierno." 
+        <a-text value="Un cementerio de facturas que no puedes pagar y spam de estafadores que tienen mas iniciativa que tu gobierno." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity> 
@@ -1099,7 +1143,7 @@ function moverCamara(pos){
         <a-text class="titulo-pais" visible "true" value="ESPANA $20,000" position="0 0 1" scale="2 2 2" color="white" align="center" side="double" rotation="0 180 0"></a-text>
         <a-entity class="panel-info" visible="false" position="2 1 1" rotation="0 -90 0">
       <a-plane width="4" height="1.5" color="black" opacity="0.8">
-        <a-text value="Un bar de desempleados que aún creen que tienen colonias." 
+        <a-text value="Un bar de desempleados que aun creen que tienen colonias." 
                 align="center" width="4" color="white" position="0 0 0.01"></a-text>
       </a-plane>
     </a-entity>
