@@ -1,105 +1,189 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        /* Interfaz para botones de compra */
+        #ui-controles {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        #btn-tirar { background: #4CAF50; color: white; }
+        #btn-comprar { background: #2196F3; color: white; display: none; }
+        #btn-declinar { background: #f44336; color: white; display: none; }
+        #resultado { background: rgba(0,0,0,0.7); color: white; padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+    </style>
     <head>
           <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
       
         </head>
         <script>
-//El avión avanza por l tablero,cambia turno automáticamente
 let turnoActual = 0;
-let posiciones = [0,0,0,0];
+        let posiciones = [0, 0, 0, 0];
+        let jugadores = ["avion1", "avion2", "avion3", "avion4"];
+        let capital = [100000, 100000, 100000, 100000]; // Dinero inicial
+        let propiedades = {}; // 
+        const ruta = [
+            
+           
+            
+            {x:-27.5, y:1.1, z:23.5, nombre: "INICIO", precio: 0},
+            {x:-18, y:1.1, z:23.5, nombre: "MARRUECOS", precio: 12000},
+            {x:-13.5, y:1.1, z:23.5, nombre: "EGIPTO", precio: 15000},
+            {x:-9, y:1.1, z:23.5, nombre: "EMBAJADA", precio: 20000},
+            {x:-4.5, y:1.1, z:23.5, nombre: "MADAGASCAR", precio: 23000},
+            {x:0, y:1.1, z:23.5, nombre: "AEROLINEA AFROASIATICA", precio: 20000},
+            {x:4.5, y:1.1, z:23.5, nombre: "RUSIA", precio: 24000},
+            {x:9, y:1.1, z:23.5, nombre: "CHINA", precio: 28000},
+            {x:13.5, y:1.1, z:23.5, nombre: "MENSAJE", precio: 0},
+            {x:18, y:1.1, z:23.5, nombre: "JAPON", precio: 38000},
 
-let jugadores = ["avion1","avion2","avion3","avion4"];
+            {x:27.5, y:1.1, z:23.5, nombre: "DEPORTADO", precio: 0},
+            {x:27.5, y:1.1, z:13.75, nombre: "CANADA", precio: 30000},
+            {x:27.5, y:1.1, z:9.25, nombre: "ESTADOS UNIDOS", precio: 40000},
+            {x:27.5, y:1.1, z:4.75, nombre: "CORREO", precio: 0},
+            {x:27.5, y:1.1, z:0.25, nombre: "MEXICO", precio: 26000},
+            {x:27.5, y:1.1, z:-4.25, nombre: "AEROLINEA NORTEAMERICANA", precio: 20000},
+            {x:27.5, y:1.1, z:-8.75, nombre: "GUATEMALA", precio: 1000},
+            {x:27.5, y:1.1, z:-13.25, nombre: "COSTA RICA", precio: 10000},
+            {x:27.5, y:1.1, z:-17.75, nombre: "MENSAJE", precio: 0},
+            {x:27.5, y:1.1, z:-22.25, nombre: "PANAMA", precio: 8000},
+            {x:27.5, y:1.1, z:-31.5, nombre: "AUSTRALIA", precio: 0},
+            {x:18, y:1.1, z:-31.5, nombre: "COLOMBIA", precio: 20000},
+            {x:13.5, y:1.1, z:-31.5, nombre: "CONSULADO", precio: 20000},
+            {x:9, y:1.1, z:-31.5, nombre: "VENEZUELA", precio: 20000},
+            {x:4.5, y:1.1, z:-31.5, nombre: "PERU", precio: 18000},
+            {x:0, y:1.1, z:-31.5, nombre: "AEROLINEA SUDAMERICANA", precio: 20000},
+            {x:-4.5, y:1.1, z:-31.5, nombre: "BRASIL", precio: 26000},
+            {x:-9, y:1.1, z:-31.5, nombre: "CORREO", precio: 0},
+            {x:-13.5, y:1.1, z:-31.5, nombre: "CHILE", precio: 18000},
+            {x:-18, y:1.1, z:-31.5, nombre: "ARGENTINA", precio: 25000},
+            
+           
+            {x:-27.5, y:1.1, z:-31.5, nombre: "CARCEL", precio: 0},
+            {x:-27.5, y:1.1, z:-22.25, nombre: "ESPANA", precio: 20000},
+            {x:-27.5, y:1.1, z:-17.75, nombre: "FRANCIA", precio: 36000}, 
+            {x:-27.5, y:1.1, z:-13.25, nombre: "CORREO", precio: 0}, 
+            {x:-27.5, y:1.1, z:-8.75, nombre: "INGLATERRA", precio: 32000}, 
+            {x:-27.5, y:1.1, z:-4.25, nombre: "AEROLINEA EUROPEA", precio: 20000}, 
+            {x:-27.5, y:1.1, z:0.25, nombre: "ITALIA", precio: 35000}, 
+            {x:-27.5, y:1.1, z:4.75, nombre: "MENSAJE", precio: 0},   
+            {x:-27.5, y:1.1, z:9.25, nombre: "SUIZA", precio: 36000},  
+            {x:-27.5, y:1.1, z:13.75, nombre: "ALEMANIA", precio: 37000},
+          
+        ];
 
-//RUTADEL TABLERO (orden de casillas)
+        // espera
+        const delay = ms => new Promise(res => setTimeout(res, ms));
 
-let ruta = [
-    {x:-27.5, y:1.2, z:23.5},  // INICIO
-    {x:-22.5, y:1.2, z:23.5},
-    {x:-18, y:1.2, z:23.5},
-    {x:-13.5, y:1.2, z:23.5},
-    {x:-9, y:1.2, z:23.5},
-    {x:-4.5, y:1.2, z:23.5},
-    {x:0, y:1.2, z:23.5},
-    {x:4.5, y:1.2, z:23.5},
-    {x:9, y:1.2, z:23.5},
-    {x:13.5, y:1.2, z:23.5},
-    {x:18, y:1.2, z:23.5},
-    {x:23, y:1.2, z:23.5},
-    {x:27.5, y:1.2, z:23.5},
+        async function iniciarTurno() {
+            document.getElementById("btn-tirar").style.display = "none";
+            let dado = Math.floor(Math.random() * 6) + 1;
+            document.getElementById("resultado").innerText = "Jugador " + (turnoActual + 1) + " sacó: " + dado;
 
-    // Baja lado derecho
-    {x:27.5, y:1.2, z:18},
-    {x:27.5, y:1.2, z:13},
-    {x:27.5, y:1.2, z:9},
-    {x:27.5, y:1.2, z:4},
-    {x:27.5, y:1.2, z:0},
-    {x:27.5, y:1.2, z:-4},
-    {x:27.5, y:1.2, z:-9},
-    {x:27.5, y:1.2, z:-13},
-    {x:27.5, y:1.2, z:-18},
-    {x:27.5, y:1.2, z:-22},
-    {x:27.5, y:1.2, z:-31.5},
+            await moverEnSaltos(dado);
+            evaluarCasilla();
+        }
 
-    // esquina inferior
-    {x:18, y:1.2, z:-31.5},
-    {x:13.5, y:1.2, z:-31.5},
-    {x:9, y:1.2, z:-31.5},
-    {x:4.5, y:1.2, z:-31.5},
-    {x:0, y:1.2, z:-31.5},
-    {x:-4.5, y:1.2, z:-31.5},
-    {x:-9, y:1.2, z:-31.5},
-    {x:-13.5, y:1.2, z:-31.5},
-    {x:-18, y:1.2, z:-31.5},
-    {x:-22.5, y:1.2, z:-31.5},
-    {x:-27.5, y:1.2, z:-31.5},
+        async function moverEnSaltos(pasos) {
+            let id = jugadores[turnoActual];
+            let el = document.getElementById(id);
+            let cam = document.getElementById("cam-" + id);
+            
+            // Activar la cámara del avión actual
+            desactivarTodasLasCamaras();
+            cam.setAttribute("camera", "active", true);
 
-    // sube lado izquierdo
-    {x:-27.5, y:1.2, z:-22},
-    {x:-27.5, y:1.2, z:-18},
-    {x:-27.5, y:1.2, z:-13},
-    {x:-27.5, y:1.2, z:-9},
-    {x:-27.5, y:1.2, z:-4},
-    {x:-27.5, y:1.2, z:0},
-    {x:-27.5, y:1.2, z:4},
-    {x:-27.5, y:1.2, z:9},
-    {x:-27.5, y:1.2, z:13},
-    {x:-27.5, y:1.2, z:18}
-];
+            for (let i = 0; i < pasos; i++) {
+                posiciones[turnoActual] = (posiciones[turnoActual] + 1) % ruta.length;
+                let nuevaPos = ruta[posiciones[turnoActual]];
+                
+                // Animación de salto
+                el.setAttribute("animation", {
+                    property: "position",
+                    to: `${nuevaPos.x} ${nuevaPos.y + 1} ${nuevaPos.z}`, // Sube un poco
+                    dur: 250,
+                    easing: "easeOutCubic"
+                });
+                await delay(250);
+                
+                el.setAttribute("animation", {
+                    property: "position",
+                    to: `${nuevaPos.x} ${nuevaPos.y} ${nuevaPos.z}`, // Baja a la casilla
+                    dur: 200,
+                    easing: "easeInCubic"
+                });
+                await delay(200);
+            }
+        }
 
-function tirarDado(){
+        function evaluarCasilla() {
+            let casillaIdx = posiciones[turnoActual];
+            let casilla = ruta[casillaIdx];
+            let dueño = propiedades[casillaIdx];
 
-    let numero = Math.floor(Math.random()*6)+1;
+            if (casilla.precio === 0) {
+                finalizarTurno();
+            } else if (dueño === undefined) {
+                // Propiedad libre
+                document.getElementById("resultado").innerText = `${casilla.nombre} está libre. ¿Comprar por $${casilla.precio}?`;
+                document.getElementById("btn-comprar").style.display = "inline-block";
+                document.getElementById("btn-declinar").style.display = "inline-block";
+            } else if (dueño !== turnoActual) {
+                // Cobrar renta
+                let renta = casilla.precio * 0.1;
+                capital[turnoActual] -= renta;
+                capital[dueño] += renta;
+                alert(`Has caído en propiedad de Jugador ${dueño + 1}. Pagas $${renta} de renta.`);
+                finalizarTurno();
+            } else {
+                document.getElementById("resultado").innerText = "Estás en tu propiedad.";
+                setTimeout(finalizarTurno, 1500);
+            }
+        }
 
-    document.getElementById("resultado").innerText =
-        "Jugador " + (turnoActual+1) + " sacó: " + numero;
+        function decidirCompra(comprar) {
+            let casillaIdx = posiciones[turnoActual];
+            let casilla = ruta[casillaIdx];
 
-    moverJugador(numero);
-}
+            if (comprar) {
+                if (capital[turnoActual] >= casilla.precio) {
+                    capital[turnoActual] -= casilla.precio;
+                    propiedades[casillaIdx] = turnoActual;
+                    alert("¡Comprado!");
+                } else {
+                    alert("No tienes suficiente dinero.");
+                }
+            }
+            
+            document.getElementById("btn-comprar").style.display = "none";
+            document.getElementById("btn-declinar").style.display = "none";
+            finalizarTurno();
+        }
 
-function moverJugador(pasos){
+        function finalizarTurno() {
+            turnoActual = (turnoActual + 1) % 4;
+            document.getElementById("btn-tirar").style.display = "inline-block";
+            document.getElementById("resultado").innerText = "Turno Jugador " + (turnoActual + 1);
+        }
 
-    posiciones[turnoActual] += pasos;
-
-    if(posiciones[turnoActual] >= ruta.length){
-        posiciones[turnoActual] = 0; // reinicia si da vuelta
-    }
-
-    let pos = ruta[posiciones[turnoActual]];
-
-    let jugador = document.getElementById(jugadores[turnoActual]);
-
-    jugador.setAttribute("animation", {
-        property: "position",
-        to: pos.x + " " + pos.y + " " + pos.z,
-        dur: 800
-    });
-
-    moverCamara(pos);
-
-    setTimeout(cambiarTurno,900);
-}
-
+        function desactivarTodasLasCamaras() {
+            // Desactiva las cámaras de los aviones
+            jugadores.forEach(id => {
+                document.getElementById("cam-" + id).setAttribute("camera", "active", false);
+            });
+        }
 function moverCamara(pos){
 
     let cam = document.getElementById("cameraRig");
@@ -108,7 +192,7 @@ function moverCamara(pos){
     // detener giro 360
     cam.removeAttribute("animation");
 
-    // obtener posición REAL del avión en el mundo
+    // obtener posición REAL
     let worldPos = new THREE.Vector3();
     jugador.object3D.getWorldPosition(worldPos);
 
@@ -122,25 +206,15 @@ function moverCamara(pos){
 }
 
 
-function cambiarTurno(){
-
-    turnoActual++;
-
-    if(turnoActual > 3){
-        turnoActual = 0;
-    }
-
-    document.getElementById("resultado").innerText =
-        "Turno Jugador " + (turnoActual+1);
-
-    let nuevaPos = ruta[posiciones[turnoActual]];
-    moverCamara(nuevaPos);
-}
-
-
 </script>
 
     <body>
+        <div id="ui-controles">
+        <div id="resultado">Turno Jugador 1</div>
+        <button id="btn-tirar" class="btn" onclick="iniciarTurno()">🎲 Tirar Dado</button>
+        <button id="btn-comprar" class="btn" onclick="decidirCompra(true)">💰 Comprar</button>
+        <button id="btn-declinar" class="btn" onclick="decidirCompra(false)">⏭️ Declinar</button>
+    </div>
         <a-scene>
 <!-- carga de los MODELOS 3D para mejor rendimiento -->
         <a-assets>
@@ -164,13 +238,14 @@ function cambiarTurno(){
      <a-asset-item id="jugador4" src="assets/avion4.glb" ></a-asset-item>
 </a-assets>
     <!-- AVION1 verde -->
-    <a-entity id="avion1" gltf-model="#jugador1" position="-25 1.2 23.5" scale="0.05 0.05 0.05" rotation="0 90 0"></a-entity>
+    <a-entity id="avion1" gltf-model="#jugador1" position="-25 1.2 23.5" scale="0.05 0.05 0.05" rotation="0 90 0"><a-entity id="cam-avion1" camera="active: false" position="0 30 -50" rotation="-20 180 0"></a-entity>
+        </a-entity>
     <!-- AVION2 rosa-->
-    <a-entity id="avion2" gltf-model="#jugador2" position="-27 1 20.5" scale="0.1 0.1 0.1" rotation="0 90 0"></a-entity>
+    <a-entity id="avion2" gltf-model="#jugador2" position="-27 1 20.5" scale="0.1 0.1 0.1" rotation="0 90 0"><a-entity id="cam-avion2" camera="active: false" position="0 30 -50" rotation="-20 180 0"></a-entity></a-entity>
     <!-- AVION3 blanco y cafe-->
-    <a-entity id="avion3" gltf-model="#jugador3" position="-27 1.5 26.5" scale="0.2 0.2 0.2" rotation="0 90 0"></a-entity>
+    <a-entity id="avion3" gltf-model="#jugador3" position="-27 1.5 26.5" scale="0.2 0.2 0.2" rotation="0 90 0"><a-entity id="cam-avion3" camera="active: false" position="0 30 -50" rotation="-20 180 0"></a-entity></a-entity>
     <!-- AVION4 cafe -->
-    <a-entity id="avion4" gltf-model="#jugador4" position="-28 1 23.5" scale="4 4 4" rotation="0 90 0"></a-entity>
+    <a-entity id="avion4" gltf-model="#jugador4" position="-28 1 23.5" scale="4 4 4" rotation="0 90 0"><a-entity id="cam-avion4" camera="active: false" position="0 3 -5" rotation="-20 180 0"></a-entity></a-entity>
     
       <!-- PLANO TURISTA COMPLETO -->
     <a-plane position="0 1 -4" rotation="-90 0 0" width="65" height="65" color="black"></a-plane>
@@ -180,21 +255,11 @@ function cambiarTurno(){
 
     <!-- CAMARA -->
    <!-- RIG DE CAMARA -->
-<a-entity 
-    id="cameraRig"
-    position="0 1.5 0"
-    
-    animation="property: rotation; 
-               to: 0 360 0; 
-               dur: 8000; 
-               easing: linear; 
-               autoplay: true"> 
-
-    <a-camera  look-controls="enabled: false" rotation="0 -90 0" position="-30 1.5 23.5" >
-    <a-cursor  raycaster="objects: .hoverable"></a-cursor>
-</a-camera>
-
-</a-entity>
+<a-entity id="cameraRig" position="0 1.5 0" animation="property: rotation; to: 0 360 0; dur: 8000; easing: linear; autoplay: true"> 
+            <a-camera id="mainCamera" look-controls="enabled: false" position="-30 1.5 23.5" rotation="0 -90 0">
+                <a-cursor raycaster="objects: .hoverable"></a-cursor>
+            </a-camera>
+        </a-entity>
 
 
     <!-- ESQUINAS 10x10-->
@@ -561,16 +626,7 @@ function cambiarTurno(){
     <a-entity gltf-model="#edificioA" rotation="0 180 0" position="-22 0.75 -22.2" scale="0.7 0.4 0.6"></a-entity>
 
 </a-scene>
-<!--BOTON PARA TIRAR DADO-->
-<button onclick="tirarDado()" 
-style="position:absolute; top:20px; left:20px; z-index:999;">
-🎲 Tirar Dado
-</button>
 
-<p id="resultado" 
-style="position:absolute; top:60px; left:20px; color:white; font-size:20px;">
-Turno Jugador 1
-</p>
 
     
     </body>
